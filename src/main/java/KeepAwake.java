@@ -16,21 +16,23 @@ import javax.swing.JOptionPane;
 
 public class KeepAwake {
   public static void main(String[] args) throws Exception {
-    installSystemTrayMenu();
+    try {
+      installSystemTrayMenu();
 
-    Robot robot = new Robot();
-    while (true) {
-      Point pObj = MouseInfo.getPointerInfo().getLocation();
-      System.out.println(pObj.toString() + "x>>" + pObj.x + "  y>>" + pObj.y);
-      robot.mouseMove(pObj.x + 5, pObj.y + 5);  
-      robot.delay(100);
-      robot.mouseMove(pObj.x - 5, pObj.y - 5);
-      robot.delay(100);
-      robot.mouseMove(pObj.x, pObj.y);
-      pObj = MouseInfo.getPointerInfo().getLocation();
-      System.out.println(pObj.toString() + "x>>" + pObj.x + "  y>>" + pObj.y);
-      
-      robot.delay(60000);
+      Robot robot = new Robot();
+      while (true) {
+        Point pObj = MouseInfo.getPointerInfo().getLocation();
+        System.out.println(pObj.toString());
+        robot.mouseMove(pObj.x + 5, pObj.y + 5);
+        robot.delay(200);
+        robot.mouseMove(pObj.x - 5, pObj.y - 5);
+        robot.delay(200);
+        robot.mouseMove(pObj.x, pObj.y);
+
+        robot.delay(60000);
+      }
+    } catch (Exception e) {
+      System.err.println(e.getMessage());
     }
   }
 
